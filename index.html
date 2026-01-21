@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
     <main>
@@ -24,92 +26,128 @@
 
         <section id="projects" class="projects">
             <div class="container">
-                <div class="projects-grid">
-                    
-                    <!-- PoseLab Project -->
-                    <div class="project-card">
-                        <div class="project-icon">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">PoseLab</h3>
-                            <p class="project-description">
-                                A mobile app to save and organize your posing videos - completely free with no ads.
-                                I developed it with the help of AI-assisted code in the editors. Right now, the app is in the process of being approved by Google Play Store and Apple App Store. 
-                            </p>
-                            <div class="project-status">
-                                <span class="status-badge beta">MOBILE APP</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://68e8baf5b0b9d.site123.me/" target="_blank" class="project-link">
-                                    <i class="fas fa-external-link-alt"></i>
-                                    Landing Page
-                                </a>
-                            </div>
+                <div class="project-window">
+                    <div class="window-header">
+                        <div class="project-tabs">
+                            <button class="tab-btn" data-project="poselab">
+                                <i class="fas fa-mobile-alt"></i> PoseLab
+                            </button>
+                            <button class="tab-btn active" data-project="roulette">
+                                <i class="fas fa-eye"></i> RouletteVision
+                            </button>
+                            <button class="tab-btn" data-project="aimap">
+                                <i class="fas fa-map-marked-alt"></i> AI Map
+                            </button>
                         </div>
                     </div>
 
-                    <!-- RouletteVision Project -->
-                    <div class="project-card">
-                        <div class="project-icon">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">RouletteVision</h3>
-                            <p class="project-description">
-                                A computer vision project with the goal of extracting features from roulette game videos. 
-                                On top of uploading the code to extract features, I also created a dataset of 1703 roulette videos-pairs for research purposes.
-                            </p>
-                            <div class="project-status">
-                                <span class="status-badge research">Research</span>
+                    <div class="window-body">
+                        <!-- PoseLab Content -->
+                        <div class="project-content-pane" id="poselab">
+                            <div class="project-header">
+                                <div class="project-icon-large">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <div class="project-title-group">
+                                    <h3>PoseLab</h3>
+
+                                </div>
                             </div>
-                            <div class="project-links">
-                                <a href="https://huggingface.co/datasets/mp-coder/RouletteVision-Dataset" target="_blank" class="project-link">
-                                    <i class="fas fa-database"></i>
-                                    Dataset
-                                </a>
-                                <a href="https://github.com/mpcodingdev/RouletteVision" target="_blank" class="project-link">
-                                    <i class="fab fa-github"></i>
-                                    Code
-                                </a>
+                            <div class="project-details">
+                                <p>
+                                    A mobile app to save and organize your posing videos, completely free with no ads.
+                                    I developed it with the help of AI-assisted code in the editors. Right now, the app
+                                    development is paused, although the landing page to get users mantains open. The app
+                                    was launched in beta phase both in Google Play and Apple App Store.
+
+                                </p>
+                                <div class="tech-stack">
+                                    <span>Mobile apps</span>
+                                    <span>AI-assisted</span>
+                                    <span>Android Studio</span>
+                                </div>
+                                <div class="action-buttons">
+                                    <a href="https://68e8baf5b0b9d.site123.me/" target="_blank" class="btn primary">
+                                        <i class="fas fa-external-link-alt"></i> Visit Landing Page
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- RouletteVision Content -->
+                        <div class="project-content-pane active" id="roulette">
+                            <div class="project-header">
+                                <div class="project-icon-large">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <div class="project-title-group">
+                                    <h3>RouletteVision</h3>
+
+                                </div>
+                            </div>
+                            <div class="project-details">
+                                <p>
+                                    A computer vision project with the goal of extracting features from roulette game
+                                    videos.
+                                    On top of uploading the code to extract features, I also created a dataset of 1703
+                                    roulette videos-pairs for research purposes. You can find comprehensive details and
+                                    a visual preview at the dataset link.
+                                </p>
+                                <div class="tech-stack">
+                                    <span>Computer Vision</span>
+                                    <span>Python</span>
+                                    <span>HuggingFace Dataset</span>
+                                </div>
+                                <div class="action-buttons">
+                                    <a href="https://huggingface.co/datasets/mp-coder/RouletteVision-Dataset"
+                                        target="_blank" class="btn primary">
+                                        <i class="fas fa-database"></i> Dataset
+                                    </a>
+                                    <a href="https://github.com/mpcodingdev/RouletteVision" target="_blank"
+                                        class="btn secondary">
+                                        <i class="fab fa-github"></i> Source Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI Map Content -->
+                        <div class="project-content-pane" id="aimap">
+                            <div class="project-header">
+                                <div class="project-icon-large">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                </div>
+                                <div class="project-title-group">
+                                    <h3>AI Research Centers Map</h3>
+
+                                </div>
+                            </div>
+                            <div class="project-details">
+                                <p>
+                                    An interactive web application mapping AI research centers around the world,
+                                    developed entirely with AI to try vibe coding.
+                                </p>
+                                <div class="tech-stack">
+                                    <span>AI-assisted</span>
+                                </div>
+                                <div class="action-buttons">
+                                    <a href="https://mpcodingdev.github.io/aicentermap/" target="_blank"
+                                        class="btn primary">
+                                        <i class="fas fa-external-link-alt"></i> View Interactive Map
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- AI Research Centers Map -->
-                    <div class="project-card">
-                        <div class="project-icon">
-                            <i class="fas fa-map-marked-alt"></i>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">AI Research Centers Map</h3>
-                            <p class="project-description">
-                                An interactive web application mapping AI research centers around the world, developed entirely with AI to try vibe coding. 
-                            </p>
-                            <div class="project-status">
-                                <span class="status-badge live">VIBE CODING</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://mpcodingdev.github.io/aicentermap/" target="_blank" class="project-link">
-                                    <i class="fas fa-external-link-alt"></i>
-                                    View Map
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>
 
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Personal Projects Portfolio. All rights reserved.</p>
-        </div>
-    </footer>
+
 
     <script src="script.js"></script>
 </body>
+
 </html>

@@ -1,4 +1,4 @@
-// Smooth scrolling for anchor links (if any are added later)
+// Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -12,74 +12,99 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe project cards for animation
+// Project Window Tab Switching Logic
 document.addEventListener('DOMContentLoaded', () => {
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = `opacity 0.6s ease ${index * 0.2}s, transform 0.6s ease ${index * 0.2}s`;
-        observer.observe(card);
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panes = document.querySelectorAll('.project-content-pane');
+    const projectWindow = document.querySelector('.project-window');
+
+    // Theme colors for each project
+    const projectColors = {
+        'poselab': '#ff6a00ff',   // Orange
+        'roulette': '#ff2222ff',  // Red
+        'aimap': '#6164ffff'      // Yellow
+    };
+
+    // Set initial color based on active tab
+    const initialTab = document.querySelector('.tab-btn.active');
+    if (initialTab && projectWindow) {
+        const pid = initialTab.getAttribute('data-project');
+        if (projectColors[pid]) {
+            projectWindow.style.setProperty('--theme-color', projectColors[pid]);
+        }
+    }
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove('active'));
+            // Add active class to clicked tab
+            tab.classList.add('active');
+
+            // Get target project id
+            const targetId = tab.getAttribute('data-project');
+
+            // Apply Theme Color
+            if (projectWindow && projectColors[targetId]) {
+                projectWindow.style.setProperty('--theme-color', projectColors[targetId]);
+            }
+
+            // Hide all panes
+            panes.forEach(pane => pane.classList.remove('active'));
+
+            // Show target pane
+            const targetPane = document.getElementById(targetId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+            }
+        });
     });
 });
 
-// Add loading animation
+// Add loading animation class to body
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
-});
-
-// Project card hover effects
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-10px) scale(1.02)';
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0) scale(1)';
-    });
 });
 
 // Add ripple effect to buttons
 function createRipple(event) {
     const button = event.currentTarget;
+
+    // Create ripple element
     const circle = document.createElement('span');
     const diameter = Math.max(button.clientWidth, button.clientHeight);
     const radius = diameter / 2;
 
+    const rect = button.getBoundingClientRect();
+
     circle.style.width = circle.style.height = `${diameter}px`;
-    circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
-    circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+    circle.style.left = `${event.clientX - rect.left - radius}px`;
+    circle.style.top = `${event.clientY - rect.top - radius}px`;
     circle.classList.add('ripple');
 
-    const ripple = button.getElementsByClassName('ripple')[0];
-    if (ripple) {
-        ripple.remove();
+    // Remove existing ripple if any (optional, but cleaner)
+    const existingRipple = button.getElementsByClassName('ripple')[0];
+    if (existingRipple) {
+        existingRipple.remove();
     }
 
     button.appendChild(circle);
+
+    // Remove ripple after animation
+    setTimeout(() => {
+        circle.remove();
+    }, 600);
 }
 
-// Apply ripple effect to buttons
-document.querySelectorAll('.cta-button, .project-link, .contact-link').forEach(button => {
-    button.addEventListener('click', createRipple);
+// Apply ripple effect to relevant elements
+document.addEventListener('DOMContentLoaded', () => {
+    const rippleElements = document.querySelectorAll('.cta-button, .btn, .contact-link, .tab-btn');
+    rippleElements.forEach(button => {
+        button.addEventListener('click', createRipple);
+    });
 });
 
-// Add CSS for ripple effect
+// Add CSS for ripple effect dynamically
 const style = document.createElement('style');
 style.textContent = `
     .ripple {
@@ -87,7 +112,7 @@ style.textContent = `
         border-radius: 50%;
         transform: scale(0);
         animation: ripple 600ms linear;
-        background-color: rgba(255, 255, 255, 0.6);
+        background-color: rgba(255, 255, 255, 0.4);
         pointer-events: none;
     }
 
@@ -98,7 +123,7 @@ style.textContent = `
         }
     }
 
-    .project-link, .contact-link, .cta-button {
+    .cta-button, .btn, .contact-link, .tab-btn {
         position: relative;
         overflow: hidden;
     }
