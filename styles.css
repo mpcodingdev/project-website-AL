@@ -143,7 +143,6 @@ body {
 }
 
 /* Project Window Styles */
-/* Project Window Styles */
 .project-window {
     background: var(--glass-bg);
     border-radius: 12px;
@@ -157,16 +156,13 @@ body {
     flex-direction: column;
     min-height: 500px;
 
-    /* Default Theme Color (Orange) */
-    --theme-color: #ff7817;
-    transition: --theme-color 0.3s ease;
+    /* Default Theme Color: Set via JS, but good to have fallback */
+    --theme-color: #ef4444;
+    transition: background-color 0.3s ease;
+    /* Transition standard properties if needed */
 }
 
-@property --theme-color {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: #ff6a00;
-}
+/* Removed @property to avoid compatibility issues/syntax errors during edits */
 
 .window-header {
     background: var(--window-header-bg);
@@ -182,6 +178,7 @@ body {
     gap: 5px;
     overflow-x: auto;
     padding-bottom: 2px;
+    /* For scrollbar spacing if needed */
 }
 
 .tab-btn {
@@ -326,7 +323,7 @@ body {
 .btn.primary:hover {
     filter: brightness(1.2);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(11, 96, 176, 0.4);
 }
 
 .btn.secondary {
@@ -337,11 +334,9 @@ body {
 
 .btn.secondary:hover {
     background: rgba(255, 255, 255, 0.05);
-    /* Neutral hover */
     color: white;
     border-color: white;
 }
-
 
 /* Contact Section */
 .contact {
@@ -410,14 +405,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* Footer */
-.footer {
-    background: var(--primary-black);
-    color: var(--text-muted);
-    text-align: center;
-    padding: 2rem 0;
-    border-top: 1px solid var(--primary-blue);
-}
+/* Footer removed as per request */
 
 /* Animations */
 @keyframes fadeInUp {
